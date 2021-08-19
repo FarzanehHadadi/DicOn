@@ -1,23 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
-
+import { Container, ThemeProvider } from "@material-ui/core";
+import "./App.css";
+import Dictionary from "./components/Dictionary";
+import Header from "./components/header";
+import Navbar from "./components/Navbar";
+import useDictionary from "./context/DicContext";
 function App() {
+  const { lightTheme } = useDictionary();
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div
+      className={`section ${
+        lightTheme ? "mode light-theme bg-light" : "mode dark-theme bg-dark"
+      }`}
+    >
+      <Container fixed>
+        <Navbar />
+        <Header />
+        <Dictionary />
+      </Container>
     </div>
   );
 }
