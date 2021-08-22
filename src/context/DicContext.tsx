@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { useContext } from "react";
 import axios from "axios";
-interface IValue {
+export interface IValue {
   lightTheme: boolean;
   word: string;
   setLightTheme: React.Dispatch<React.SetStateAction<boolean>>;
@@ -10,13 +10,22 @@ interface IValue {
   setLanguage: React.Dispatch<React.SetStateAction<string>>;
   audioUrl: string;
   phonetic: string | null;
-  meanings: [] | null;
+  meanings: IMeaning[] | null;
 }
-interface IMeaning {}
+export interface IMeaning {
+  partOfSpeech: string;
+  definitions: IDefinition[];
+}
+export interface IDefinition {
+  antonyms: string[];
+  definition: string;
+  synonyms: string[];
+  example: string;
+}
 const initialState = {
-  lightTheme: true,
+  lightTheme: false,
   setLightTheme: () => {},
-  word: "hello",
+  word: "",
   changeWord: () => {},
   language: "",
   setLanguage: () => {},
@@ -24,17 +33,15 @@ const initialState = {
   phonetic: "",
   meanings: null,
 };
-// type DictionaryType = typeof initialState
 const DicContext = React.createContext<IValue>(initialState);
 const url: string = "https://api.dictionaryapi.dev/api/v2/entries/";
 const DicContextProvider = ({ children }: any | null | undefined) => {
-  const [lightTheme, setLightTheme] = useState<boolean>(true);
-  const [word, setWord] = useState<string>("hi");
+  const [lightTheme, setLightTheme] = useState<boolean>(false);
+  const [word, setWord] = useState<string>("");
   const [audioUrl, setAudioUrl] = useState<string>("");
   const [language, setLanguage] = useState<string>("en");
   const [phonetic, setPhonetic] = useState<string | null>("");
   const [meanings, setMeanings] = useState<[] | null>([]);
-  // const [synonyms, setSynonyms] = useState<Array|null>([]);
 
   const fetchWord = useCallback(async (): Promise<void> => {
     if (word.length < 1) return;
@@ -79,7 +86,6 @@ const DicContextProvider = ({ children }: any | null | undefined) => {
         audioUrl,
         phonetic,
         meanings,
-        // synonyms,
       }}
     >
       {children}

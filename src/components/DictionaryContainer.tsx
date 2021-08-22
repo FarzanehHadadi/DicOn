@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
-import useDictionary from "../context/DicContext";
+import useDictionary, { IMeaning, IDefinition } from "../context/DicContext";
 
 const DictionaryContainer: React.FC = () => {
   const { meanings, phonetic, lightTheme, audioUrl } = useDictionary();
+
   const [cardClass, setCardClass] = useState<string>("");
   useEffect(() => {
     setCardClass(
@@ -26,10 +27,10 @@ const DictionaryContainer: React.FC = () => {
             {meanings?.length} meanings found
           </h4>
           <div className={cardClass}>
-            <h3>phonetics</h3>
+            <h3>phonetic</h3>
             <span>{phonetic}</span>
           </div>
-          {meanings?.map((mean: any, index: number) => (
+          {meanings?.map((mean: IMeaning, index: number) => (
             <article key={index} className="dictionary-item">
               <h4 className="light-theme">meaning {index + 1}</h4>
               <div className={cardClass}>
@@ -39,7 +40,7 @@ const DictionaryContainer: React.FC = () => {
 
               {mean.definitions.length > 0 && (
                 <div>
-                  {mean.definitions.map((def: any, ind: number) => (
+                  {mean.definitions.map((def: IDefinition, ind: number) => (
                     <div key={ind}>
                       {def.antonyms.length > 0 && (
                         <div className={cardClass}>
