@@ -4,6 +4,7 @@ import Dictionary from "./components/Dictionary";
 import Header from "./components/header";
 import Navbar from "./components/Navbar";
 import useDictionary from "./context/DicContext";
+
 function App() {
   const { lightTheme } = useDictionary();
   return (

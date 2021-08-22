@@ -1,14 +1,17 @@
-import React from "react";
+import * as React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
 import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
+// import { Provider } from "./context/DictionaryContext";
 
 import { DicContextProvider } from "./context/DicContext";
 
 ReactDOM.render(
   <React.StrictMode>
     <DicContextProvider>
+      {/* <Provider> */}
       <App />
+      {/* </Provider> */}
     </DicContextProvider>
   </React.StrictMode>,
   document.getElementById("root")

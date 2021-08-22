@@ -1,8 +1,8 @@
 import { MenuItem, TextField } from "@material-ui/core";
 import Languages from "./languages";
 import useDictionary from "../context/DicContext";
-const DictionaryForm = () => {
-  const { word, changeWord, setLanguage, language, lightTheme } =
+const DictionaryForm: React.FC = () => {
+  const { word, changeWord, lightTheme, language, setLanguage } =
     useDictionary();
 
   return (

@@ -1,7 +1,7 @@
 import { FormControlLabel, Switch, withStyles } from "@material-ui/core";
 import { grey } from "@material-ui/core/colors";
 import useDictionary from "../context/DicContext";
-const Navbar = () => {
+const Navbar: React.FC = () => {
   const { lightTheme, setLightTheme } = useDictionary();
   const DarkSwitch = withStyles({
     switchBase: {
@@ -25,6 +25,7 @@ const Navbar = () => {
         {lightTheme ? "Dark Mode" : "Light Mode"}
         {"   "}
         <FormControlLabel
+          label=""
           control={
             <DarkSwitch
               checked={lightTheme}

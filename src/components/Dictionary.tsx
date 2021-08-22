@@ -4,8 +4,14 @@ import { ThemeProvider } from "@material-ui/core/styles";
 import { createTheme } from "@material-ui/core/styles";
 import useDictionary from "../context/DicContext";
 
-const Dictionary = () => {
-  const { lightTheme } = useDictionary();
+const Dictionary: React.FC = () => {
+  interface IValue {
+    lightTheme: boolean;
+  }
+
+  const value: IValue = useDictionary();
+  console.log("🚀 ~ file: Dictionary.tsx ~ line 15 ~ value", value);
+  const { lightTheme } = value;
   const theme = createTheme({
     palette: {
       primary: {

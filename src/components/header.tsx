@@ -1,5 +1,7 @@
 import useDictionary from "../context/DicContext";
-const Header = () => {
+
+const Header :React.FC= () => {
+  // return <div></div>
   const { word } = useDictionary();
   return (
     <div className="header">
